@@ -30,7 +30,7 @@ public class Week2Homework2
             while (cursor.hasNext()) 
             {
                 DBObject cur = cursor.next();
-                Integer sid  = (Integer)cur.get("student_id");
+                Integer  sid = (Integer)cur.get("student_id");
                 
                 if(currId == null ||  !currId.equals(sid))
                 {

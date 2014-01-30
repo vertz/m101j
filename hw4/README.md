@@ -152,7 +152,8 @@ mongoimport -d m101 -c profile < sysprofile.json
 
 Now query the profile data, looking for all queries to the students collection in the database school2, sorted in order of decreasing latency. What is the latency of the longest running operation to the collection, in milliseconds?
 ```
-> db.profile.find({'ns':'school2.students'}).sort({millis: -1}).limit(1)
+> use m101
+> db.profile.find({'ns':'school2.students'}).sort({millis: -1}).limit(1).pretty()
 ```
 
 #### <a href="http://stackoverflow.com/questions/19527564/mongo-couldnt-connect-to-server-127-0-0-127017-at-src-mongo-shell-mongo-js14">Error: couldn't connect to server 127.0.0.1:27017 src/mongo/shell/mongo.js</a>

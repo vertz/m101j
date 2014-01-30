@@ -7,11 +7,7 @@ We have provided the full code for the blog application and you don't need to ma
 
 We are also providing a patriotic (if you are an American) data set for the blog. There are 1000 entries with lots of comments and tags. You must load this dataset to complete the problem.
 ```
-# from the mongo shell
-use blog
-db.posts.drop()
-# from the a mac or PC terminal window
-mongoimport -d blog -c posts < posts.json
+$ mongoimport -d blog -c posts --drop < posts.json
 ```
 
 The blog has been enhanced so that it can also display the top 10 most recent posts by tag. There are hyperlinks from the post tags to the page that displays the 10 most recent blog entries for that tag. (run the blog and it will be obvious)

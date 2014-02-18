@@ -31,6 +31,7 @@ This problem is a little tricky because a recipient may appear more than once in
     {$group  : {_id : {From: "$headers.From", To:'$headers.To', mID:'$headers.Message-ID'}, double:{$sum:1}}},
     {$group  : {_id : {From : "$_id.From", To:'$_id.To'}, count:{$sum:1}}},
     {$sort   : {count : -1}},
+    {$limit  : 1}
   ])
 ```
 

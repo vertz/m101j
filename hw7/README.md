@@ -12,6 +12,7 @@ Construct a query to calculate the number of messages sent by Andrew Fastow, CFO
 
 For reference, the number of email messages from Andrew Fastow to John Lavorato (john.lavorato@enron.com) was 1. 
 ```
+> use enron
 > db.messages.aggregate([
     {$match : {"headers.From" : "andrew.fastow@enron.com"}},
     {$match : {"headers.To"   : "jeff.skilling@enron.com"}},

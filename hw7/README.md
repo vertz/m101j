@@ -20,6 +20,20 @@ For reference, the number of email messages from Andrew Fastow to John Lavorato 
   ])
 ```
 
+#### Homework 7.2
+
+Please use the Enron dataset you imported for the previous problem. For this question you will use the aggregation framework to figure out pairs of people that tend to communicate a lot. To do this, you will need to unwind the To list for each message. 
+
+This problem is a little tricky because a recipient may appear more than once in the To list for a message. You will need to fix that in a stage of the aggregation before doing your grouping and counting of (sender, recipient) pairs. 
+```
+> db.messages.aggregate([
+    {$unwind : '$headers.To'},
+    {$group  : {_id : {From: "$headers.From", To:'$headers.To', mID:'$headers.Message-ID'}, double:{$sum:1}}},
+    {$group  : {_id : {From : "$_id.From", To:'$_id.To'}, count:{$sum:1}}},
+    {$sort   : {count : -1}},
+  ])
+```
+
 #### Homework 7.7
 
 You have been tasked to cleanup a photosharing database. The database consists of two collections, albums, and images. Every image is supposed to be in an album, but there are orphan images that appear in no album. Here are some example documents (not from the collections you will be downloading). 

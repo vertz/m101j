@@ -35,6 +35,17 @@ This problem is a little tricky because a recipient may appear more than once in
   ])
 ```
 
+#### Homework 7.3
+
+In this problem you will update a document in the messages collection to illustrate your mastery of updating documents from the shell. In fact, we've created a collection with a very similar schema to the Enron dataset, but filled instead with randomly generated data. 
+
+Please add the email address "mrpotatohead@10gen.com" to the list of addresses in the "headers.To" array for the document with "headers.Message-ID" of "<8147308.1075851042335.JavaMail.evans@thyme>" 
+```
+> db.messages.update(
+		{"headers.Message-ID" : "<8147308.1075851042335.JavaMail.evans@thyme>"}, 
+		{ $addToSet : { "headers.To": "mrpotatohead@10gen.com" }})
+```
+
 #### Homework 7.7
 
 You have been tasked to cleanup a photosharing database. The database consists of two collections, albums, and images. Every image is supposed to be in an album, but there are orphan images that appear in no album. Here are some example documents (not from the collections you will be downloading). 

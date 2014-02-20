@@ -83,8 +83,7 @@ Your task is to write a program to remove every image from the images collection
 
 Start by using mongoimport to import your albums.json and images.json collections.
 
-When you are done removing the orphan images from the collection, there should be 89,737 documents in the images collection. To prove you did it correctly, what are the total number of images with the tag 'kittens" after the removal of orphans? As as a sanity check, there are 49,932 images that are tagged 'kittens' before you remove the images. 
-Hint: you might consider creating an index or two or your program will take a long time to run
+When you are done removing the orphan images from the collection, there should be 89,737 documents in the images collection. To prove you did it correctly, what are the total number of images with the tag 'sunrises" after the removal of orphans? As as a sanity check, there are 49, 887 images that are tagged 'sunrises' before you remove the images. 
 ```
 $ mongoimport -d photosharing -c albums --drop < albums.json
 $ mongoimport -d photosharing -c images --drop < images.json
@@ -94,8 +93,8 @@ $ mongo
 > db.images.count()
 100000
 
-> db.images.aggregate([{$match: {tags:"kittens"}},{$group: {_id:"", total: {$sum: 1}}}])
-{ "result" : [ { "_id" : "", "total" : 49932 } ], "ok" : 1 }
+> db.images.aggregate([{$match: {tags:"sunrises"}},{$group: {_id:"", total: {$sum: 1}}}])
+{ "result" : [ { "_id" : "", "total" : 49887 } ], "ok" : 1 }
 
 > db.albums.ensureIndex({images:1})
 ```

@@ -16,7 +16,7 @@ For reference, the number of email messages from Andrew Fastow to John Lavorato 
 > db.messages.aggregate([
     {$match : {"headers.From" : "andrew.fastow@enron.com"}},
     {$match : {"headers.To"   : "jeff.skilling@enron.com"}},
-    {$group : {_id: null, count: {$sum : 1}}}
+    {$group : {_id: "", count: {$sum : 1}}}
   ])
 ```
 
@@ -28,8 +28,8 @@ This problem is a little tricky because a recipient may appear more than once in
 ```
 > db.messages.aggregate([
     {$unwind : '$headers.To'},
-    {$group  : {_id : {From: "$headers.From", To:'$headers.To', mID:'$headers.Message-ID'}, double:{$sum:1}}},
-    {$group  : {_id : {From : "$_id.From", To:'$_id.To'}, count:{$sum:1}}},
+    {$group  : {_id : {From:'$headers.From', To:'$headers.To', mID:'$headers.Message-ID'}, double:{$sum:1}}},
+    {$group  : {_id : {From:'$_id.From', To:'$_id.To'}, count:{$sum:1}}},
     {$sort   : {count : -1}},
     {$limit  : 1}
   ])

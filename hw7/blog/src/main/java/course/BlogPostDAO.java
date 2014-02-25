@@ -120,7 +120,7 @@ public class BlogPostDAO {
 	
 	DBObject post = this.findByPermalink(permalink);
 	if (post == null){
-		return;
+            return;
 	}
 	    
 	List<DBObject> comments = (List<DBObject>) post.get("comments");

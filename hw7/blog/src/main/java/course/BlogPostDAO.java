@@ -118,17 +118,17 @@ public class BlogPostDAO {
 	// alternatively, you can use whatever you like but will need to make a couple of other 
 	// changes to templates and post retrieval code.
 	
-	    DBObject post = this.findByPermalink(permalink);
-	    if (post == null){
-	        return;
-	    }
+	DBObject post = this.findByPermalink(permalink);
+	if (post == null){
+		return;
+	}
 	    
-	    List<DBObject> comments = (List<DBObject>) post.get("comments");
-	    DBObject comment = comments.get(ordinal);
+	List<DBObject> comments = (List<DBObject>) post.get("comments");
+	DBObject comment = comments.get(ordinal);
 	    
-	    Integer numLikes = (Integer)comment.get("num_likes");
-	    comment.put("num_likes", numLikes + 1);
+	Integer numLikes = (Integer)comment.get("num_likes");
+	comment.put("num_likes", numLikes + 1);
 	    
-	    postsCollection.update(new BasicDBObject("permalink",permalink), post);
+	postsCollection.update(new BasicDBObject("permalink",permalink), post);
     }
 }
